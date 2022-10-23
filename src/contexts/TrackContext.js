@@ -8,10 +8,11 @@ export default function UserProvider({children}){
     const [addHabit, setHabit] = useState(false)
     const [infos, setInfos] = useState({ name: "", days: [] })
     const [token, setToken] = useState()
+    const [percentage, setPercentage] = useState(0)
 
     return(
         <TrackContext.Provider
-            value={{user, setUser, addHabit, setHabit, infos, setInfos, token, setToken}}
+            value={{user, setUser, addHabit, setHabit, infos, setInfos, token, setToken, percentage, setPercentage}}
         >
             {children}
         </TrackContext.Provider>

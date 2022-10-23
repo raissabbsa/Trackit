@@ -8,26 +8,28 @@ import NewHabit from "./NewHabit";
 import dayjs from "dayjs";
 
 export default function TodayPage(){
-    const { token} = useContext(TrackContext)
+    const { token, percentage} = useContext(TrackContext)
     const [content, setContent] = useState([])
-
-    useEffect(() => {
-        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
     
-        const config = {
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
+    useEffect(searchHabits, [token])
+    
+    function searchHabits() {
+      const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
+  
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`
         }
-    
-        const promise = axios.get(URL, config)
-    
-        promise.then((res) => {
-          setContent(res.data)
-        })
-    
-        promise.catch((err) => console.log(err.response.data))
-    }, [])
+      }
+  
+      const promise = axios.get(URL, config)
+  
+      promise.then((res) => {
+        setContent(res.data)
+      })
+  
+      promise.catch((err) => console.log(err.response.data))
+  }
 
     function chooseDay(){
 
@@ -41,14 +43,24 @@ export default function TodayPage(){
         case 6: return "Sábado"
         default: return ""
       }
-    }    
+    }
+    function addText(){
+      if(percentage>0){
+        return `${parseInt(percentage)}% dos hábitos concluídos`
+      }
+      else{
+        return "Nenhum hábito concluído ainda"
+      }
+    }
 
     return(
-        <Container>
+        <Container percentage={percentage}>
             <Header />
             <h2>{chooseDay()}, {dayjs().date()}/{dayjs().month()+1}</h2>
-            <p>Nenhum hábito concluído ainda</p>
-            {content.map((el) => <NewHabit key={el.id} el={el} content={content}/>)}
+            <p>{addText()}</p>
+            <ListOffHabits>
+              {content.map((el) => <NewHabit key={el.id} el={el} searchHabits={searchHabits}/>)}
+            </ListOffHabits>
             <Footer />
         </Container>
     )
@@ -70,11 +82,14 @@ const Container = styled.div`
         color: #126BA5;
         margin-left: 17px;
     }
-    p{
-        color: #BABABA;
+    &>p{
+        color: ${props => props.percentage > 0 ? "#8FC549" : "#BABABA"};
         margin-left: 0 auto;
         padding-left: 17px;
         font-size: 18px;
         margin-top: 5px;
     }
+`
+const ListOffHabits = styled.div`
+  margin-bottom: 200px;
 `

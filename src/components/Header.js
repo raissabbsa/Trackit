@@ -32,7 +32,7 @@ const Top = styled.div`
         width: 51px;
         height: 51px;
         border-radius: 30px;
-        margin-right: 30px;
+        margin-right: 0;
     }
 
     `

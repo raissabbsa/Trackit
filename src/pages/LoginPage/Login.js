@@ -56,7 +56,7 @@ export default function Login() {
                     disabled={loading ? "disabled" : ""}
                     />
                 <button type="submit" disabled={loading ? "disabled" : ""}>
-                    {loading? (<ThreeDots color="#DDDDDD" height={13} width={51} radius="9" ariaLabel="loading"/>) : ("Entrar")}
+                    {loading? (<ThreeDots color="#DDDDDD" height={13} width={300} radius="9" ariaLabel="loading"/>) : ("Entrar")}
                 </button>
             </form>
             <p onClick={() => navigate("/cadastro")}>Não tem uma conta? Cadastre-se!</p>
@@ -75,7 +75,7 @@ const Container = styled.div`
         width: 180px;
     }
     button{
-        width: 303px;
+        width: 100%;
         height: 45px;
         color: white;
         background-color: #52B5FB;

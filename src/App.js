@@ -4,8 +4,8 @@ import Login from "./pages/LoginPage/Login";
 import Registracion from"./pages/LoginPage/Registracion"
 import Habit from "./pages/Habits/Habit"
 import UserProvider from "./contexts/TrackContext";
-import HistoricPage from "./pages/Habits/HistoricPage";
-import TodayPage from "./pages/Habits/TodayPage";
+import HistoricPage from "./pages/Historic.js/HistoricPage";
+import TodayPage from "./pages/Today.js/TodayPage";
 export default function App(){
     return(
         <UserProvider>

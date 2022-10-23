@@ -1,18 +1,7 @@
 import styled from "styled-components"
-import { useState } from "react"
 
-export default function ButtonDay({isAble, el, days, setDays}) {
-    const [clicada, setClicada] = useState(false)
-
-    function addDay(day){
-        setDays([...days, day])
-        if([...days, day].includes(day)){
-            setClicada(true)
-        }
-        else{
-            setClicada(false)
-        }
-    }
+export default function ItemHAbitButton({ el, days}) {
+     
     function chooseDay(el){
         if(el === 0){return "D"} 
         else if(el === 1){return "S"}
@@ -23,7 +12,7 @@ export default function ButtonDay({isAble, el, days, setDays}) {
         else if(el === 6){return "S"}  
     } 
     return (
-        <Botao clicada={clicada} disabled={isAble ? "" : "disabled"} onClick={() => addDay(el)}>{chooseDay(el)}</Botao>
+        <Botao clicada={days.includes(el) ? true : false} disabled >{chooseDay(el)}</Botao>
     )
 }
 

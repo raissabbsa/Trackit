@@ -7,7 +7,7 @@ export default function HistoricPage(){
         <Container>
             <Header />
             <h2>Histórico</h2>
-            <p>Em breve você poderá ver o histórico dos seus hábitos aqui</p>
+            <h4>Em breve você poderá ver o histórico dos seus hábitos aqui</h4>
             <Footer />
         </Container>
     )
@@ -29,7 +29,7 @@ const Container = styled.div`
         color: #126BA5;
         margin-left: 17px;
     }
-    p{
+    h4{
         color: #666666;
         margin-left: 0 auto;
         padding-left: 17px;

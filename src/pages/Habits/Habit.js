@@ -2,24 +2,58 @@ import styled from "styled-components"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import AddNewHabit from "./AddNewHabit"
+import ItemHabit from "./ItemHabit"
 import { TrackContext } from "../../contexts/TrackContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+import axios from "axios"
 
-export default function Habit(){
-    const {setHabit} = useContext(TrackContext)
+export default function Habit() {
+    const { setHabit, token } = useContext(TrackContext)
+    const [allHabits, setAll] = useState()
 
-    return(
-        <Container>
-            <Header/>
-            <AddHabit>
-                <h2>Meus Hábitos</h2>
-                <button onClick={() => setHabit(true)}>+</button>
-            </AddHabit>
-            <AddNewHabit/>
-            <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
-            <Footer/>
-        </Container>
-    )
+    useEffect(searchInfo, [token])
+
+    function searchInfo(){
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const promise = axios.get(URL, config)
+        promise.then((res) => {
+            setAll(res.data)
+        })
+        promise.catch((err) => console.log(err.response.data))
+    }
+
+    if (allHabits === undefined) {
+        return (
+            <Container>
+                <Header />
+                <AddHabit>
+                    <h2>Meus Hábitos</h2>
+                    <button onClick={() => setHabit(true)}>+</button>
+                </AddHabit>
+                <AddNewHabit />
+                <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
+                <Footer />
+            </Container>
+        )
+    }
+    else {
+        return (
+            <Container>
+                <Header />
+                <AddHabit>
+                    <h2>Meus Hábitos</h2>
+                    <button onClick={() => setHabit(true)}>+</button>
+                </AddHabit>
+                <AddNewHabit />
+                {allHabits.map((e) => <ItemHabit e={e}  key={e.id} searchInfo={searchInfo}/>)}
+                <Footer />
+            </Container>)
+    }
 }
 const Container = styled.div`
     box-sizing: border-box;
