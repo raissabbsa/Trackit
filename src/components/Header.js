@@ -1,6 +1,9 @@
+import { useContext } from "react"
 import styled from "styled-components"
+import { TrackContext } from "../contexts/TrackContext"
 
-export default function Header({user}){
+export default function Header(){
+    const {user} = useContext(TrackContext)
     return(
         <Top>
             <h1>Trackit</h1>

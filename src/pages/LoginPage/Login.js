@@ -3,27 +3,35 @@ import logo from "../../assets/images/logo.png"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useState } from "react"
+import { TrackContext } from "../../contexts/TrackContext"
+import { useContext } from "react"
+import {ThreeDots} from 'react-loader-spinner';
 
 export default function Login() {
+    const{setUser, setToken} = useContext(TrackContext)
     const navigate = useNavigate()
     const [form,setForm] = useState({email:"", password:""})
-    //{id: 6166, name: 'ra', email: 'ra@ra.com', image: 'https://img.ibxk.com.br/2022/10/11/11012514431007.jpg', password: '123abc', …}
-
+    const [loading, setLoading] = useState(false)
     function fillForm(e){
         setForm({...form, [e.target.name]: e.target.value})
     }
 
     function login(e){
         e.preventDefault();
+        setLoading(true)
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
 
         const promisse = axios.post(URL, form)
         
         promisse.then((res) => {
-            navigate("/habitos")
+            setUser(res.data)
+            setToken(res.data.token)
+            navigate("/hoje")
         })
 
-        promisse.catch(err => alert(err.response.data.message))
+        promisse.catch(err => {
+            setLoading(false)
+            alert(err.response.data.message)})
     }
 
 
@@ -37,14 +45,19 @@ export default function Login() {
                     value={form.email}
                     name="email"
                     onChange={fillForm}
+                    disabled={loading ? "disabled" : ""}
                 />
                 <input
                     placeholder="senha"
                     type="password" 
                     value={form.password}
                     name="password"
-                    onChange={fillForm}/>
-                <button type="submit">Entrar</button>
+                    onChange={fillForm}
+                    disabled={loading ? "disabled" : ""}
+                    />
+                <button type="submit" disabled={loading ? "disabled" : ""}>
+                    {loading? (<ThreeDots color="#DDDDDD" height={13} width={51} radius="9" ariaLabel="loading"/>) : ("Entrar")}
+                </button>
             </form>
             <p onClick={() => navigate("/cadastro")}>Não tem uma conta? Cadastre-se!</p>
         </Container>
@@ -71,6 +84,8 @@ const Container = styled.div`
         text-align: center;
         font-size: 21px;
         cursor: pointer;
+        box-sizing: border-box;
+        text-align: center;
     }
     p{
         font-size: 14px;

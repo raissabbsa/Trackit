@@ -1,11 +1,14 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Footer() {
+    const navigate = useNavigate()
+    
     return (
         <Bar>
-            <p>Hábitos</p>
-            <button>Hoje</button>
-            <p>Histórico</p>
+            <p onClick={() => navigate("/habitos")}>Hábitos</p>
+            <button onClick={() => navigate("/hoje")}>Hoje</button>
+            <p onClick={() => navigate("/historico")}>Histórico</p>
         </Bar>
     )
 }
@@ -32,5 +35,9 @@ const Bar = styled.div`
         color: white;
         font-size: 23px;
         margin-bottom: 30px;
+        cursor: pointer;
+    }
+    p{
+        cursor: pointer;
     }
 `

@@ -4,7 +4,8 @@ import logo from "../../assets/images/logo.png"
 import { useState } from "react"
 import axios from "axios"
 
-export default function Registracion({setUser}){
+export default function Registracion(){
+    const [isAble, setAble] = useState(true)
     const navigate = useNavigate()
     const [form,setForm] = useState({email:"", name:"", image:"", password:""})
 
@@ -17,11 +18,12 @@ export default function Registracion({setUser}){
         const URL= "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
         const promisse = axios.post(URL, form)
         promisse.then((res) => {
-            setUser(res.data)
+            setAble(false)
             navigate("/")
         })
         promisse.catch((err) => {
             alert(err.response.data.message)
+            setAble(true)
         })
     }
 
@@ -35,6 +37,7 @@ export default function Registracion({setUser}){
                     type="email"
                     value={form.email}
                     onChange={fillForm}
+                    disabled={isAble ? "" : "disabled"}
                     required />
                 <input
                     placeholder="senha"
@@ -42,6 +45,7 @@ export default function Registracion({setUser}){
                     name="password"
                     value={form.password}
                     onChange={fillForm}
+                    disabled={isAble ? "" : "disabled"}
                     required />
                 <input
                     placeholder="nome"
@@ -49,6 +53,7 @@ export default function Registracion({setUser}){
                     name="name"
                     value={form.name}
                     onChange={fillForm}
+                    disabled={isAble ? "" : "disabled"}
                     required />
                 <input
                     placeholder="foto"
@@ -56,8 +61,9 @@ export default function Registracion({setUser}){
                     name="image"
                     value={form.image}
                     onChange={fillForm}
+                    disabled={isAble ? "" : "disabled"}
                     required />
-                <button type="submit">Cadastrar</button>
+                <button disabled={isAble ? "" : "disabled"} type="submit">Cadastrar</button>
             </form>
             <p onClick={() => navigate("/")}>Já tem uma conta? Faça Login!</p>
         </Container>
