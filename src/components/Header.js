@@ -14,6 +14,7 @@ export default function Header(){
 
 const Top = styled.div`
     background-color: #1D6BA5;
+    z-index: 4;
     color: white;
     font-family: 'Playball', cursive;
     font-size: 40px;

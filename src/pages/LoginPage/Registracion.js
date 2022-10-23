@@ -74,10 +74,13 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
+    height: 100vh;
     img{
         margin-top: 68px;
         margin-bottom: 30px;
         width: 180px;
+        background-color: #FFFFFF;
     }
     button{
         width: 303px;

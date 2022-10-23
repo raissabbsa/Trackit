@@ -44,6 +44,7 @@ const Container = styled.div`
     height: 91px;
     margin: 0px auto;
     background-color: #FFFFFF;
+    border-radius: 5px;
     box-sizing: border-box;
     position: relative;
     margin-bottom: 10px;

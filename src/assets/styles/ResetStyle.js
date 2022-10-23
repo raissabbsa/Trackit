@@ -29,6 +29,7 @@ const ResetStyle = createGlobalStyle`
         line-height: 1;
         font-family: 'Lexend Deca', sans-serif;        
         box-sizing: border-box;
+        background-color: #F2F2F2;
     }
     ol, ul {
         list-style: none;

@@ -69,12 +69,13 @@ export default function AddNewHabit(){
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 340px;
+    border-radius: 5px;
     height: 200px;
-    margin: 0px auto;
     background-color: #FFFFFF;
     box-sizing: border-box;
-    input{
+    margin: 0 auto 10px;
+    &>input{
         margin: 18px;
         border: 1px solid #D4D4D4;
         border-radius: 5px;
@@ -93,6 +94,7 @@ const Dias = styled.div`
 const Botoes = styled.div`
     margin-top: 36px;
     display: flex;
+
     button:first-child{
         margin-left: 140px;
         margin-right:23px;

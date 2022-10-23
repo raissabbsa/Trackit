@@ -72,7 +72,7 @@ const Item = styled.div`
     box-sizing: border-box;
     width: 340px;
     height: 94px;
-    margin: 0px auto;
+    margin-left: 17px;
     margin-top: 30px;   
     display: flex;
     justify-content: space-between;

@@ -59,8 +59,8 @@ const Container = styled.div`
     box-sizing: border-box;
     background-color: #F2F2F2;
     height: 100vh;
-    h2{
-        margin: 10px auto;
+    &>h2{
+        margin-left: 17px;
         color: #666666;
         font-size: 18px;
         margin-top: 18px;
