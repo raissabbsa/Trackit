@@ -53,11 +53,11 @@ export default function NewHabit({ el, content, searchHabits }) {
         }
     }
     return (
-        <Item clicou={el.done}>
+        <Item clicou={el.done} itsEqual={el.currentSequence === el.highestSequence}>
             <Text>
                 <h3>{el.name}</h3>
-                <h4>Sequência atual: 3 dias</h4>
-                <h4>Seu recorde: 3 dias</h4>
+                <h4>Sequência atual: {el.currentSequence} dias</h4>
+                <h5>Seu recorde: {el.highestSequence} dias</h5>
             </Text>
             <ion-icon
                 onClick={finishHabit}
@@ -90,6 +90,12 @@ const Item = styled.div`
     h4{
         font-size: 15px;
         margin-bottom: 3px;
+        color: ${props => props.clicou ? "#8FC549" : "#666666"};
+    }
+    h5{
+        font-size: 15px;
+        margin-bottom: 3px;
+        color: ${props => props.clicou && props.itsEqual ? "#8FC549" : "#666666"};
     }
     h3{
         font-size: 20px;

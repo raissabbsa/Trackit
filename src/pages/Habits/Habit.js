@@ -50,7 +50,9 @@ export default function Habit() {
                     <button onClick={() => setHabit(true)}>+</button>
                 </AddHabit>
                 <AddNewHabit />
-                {allHabits.map((e) => <ItemHabit e={e}  key={e.id} searchInfo={searchInfo}/>)}
+                <List>
+                    {allHabits.map((e) => <ItemHabit e={e}  key={e.id} searchInfo={searchInfo}/>)}
+                </List>
                 <Footer />
             </Container>)
     }
@@ -58,7 +60,6 @@ export default function Habit() {
 const Container = styled.div`
     box-sizing: border-box;
     background-color: #F2F2F2;
-    height: 100vh;
     &>h2{
         margin-left: 17px;
         color: #666666;
@@ -86,4 +87,8 @@ const AddHabit = styled.div`
         border: none;
         border-radius: 10px;
     }
+`
+
+const List = styled.div`
+    margin-bottom: 100px;
 `
