@@ -60,6 +60,7 @@ export default function NewHabit({ el, content, searchHabits }) {
                 <h5>Seu recorde: {el.highestSequence} dias</h5>
             </Text>
             <ion-icon
+                data-identifier="done-habit-btn" 
                 onClick={finishHabit}
                 name="checkbox"
             >

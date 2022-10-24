@@ -120,7 +120,7 @@ const Container = styled.div`
     }
     &>div{
         background-color: #FFFFFF;
-        height: 200px;
+        height: 300px;
     }
     
 `

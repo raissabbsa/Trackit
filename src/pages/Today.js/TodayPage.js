@@ -56,8 +56,8 @@ export default function TodayPage() {
   return (
     <Container percentage={percentage}>
       <Header />
-      <h2>{chooseDay()}, {dayjs().date()}/{dayjs().month() + 1}</h2>
-      <p>{addText()}</p>
+      <h2 data-identifier="today-infos">{chooseDay()}, {dayjs().date()}/{dayjs().month() + 1}</h2>
+      <p data-identifier="today-infos">{addText()}</p>
       <ListOffHabits>
         {content.map((el) => <NewHabit key={el.id} el={el} searchHabits={searchHabits} content={content} />)}
       </ListOffHabits>
