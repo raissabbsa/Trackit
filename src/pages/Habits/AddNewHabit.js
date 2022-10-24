@@ -45,6 +45,7 @@ export default function AddNewHabit(){
         return(
             <Container>
                 <input type="text" 
+                data-identifier="input-habit-name"
                 placeholder="nome do hábito"
                 value={name}
                 name="name"
@@ -55,8 +56,12 @@ export default function AddNewHabit(){
                     {arrayDias.map((el) => <ButtonDay key={el} isAble={isAble} el={el} days={days} setDays={setDays}/>)}
                 </Dias>
                 <Botoes>
-                    <button onClick={() => setHabit(false)}>Cancelar</button>
-                    <button onClick={submitInfos}>Salvar</button>
+                    <button data-identifier="cancel-habit-create-btn" onClick={() => setHabit(false)}>
+                        Cancelar
+                    </button>
+                    <button data-identifier="save-habit-create-btn" onClick={submitInfos}>
+                        Salvar
+                    </button>
                 </Botoes>
 
             </Container>

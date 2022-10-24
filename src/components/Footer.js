@@ -11,7 +11,9 @@ export default function Footer() {
 
     return (
         <Bar>
-            <p onClick={() => navigate("/habitos")}>Hábitos</p>
+            <p data-identifier="habit-page-action" onClick={() => navigate("/habitos")}>
+                Hábitos
+            </p>
             <button onClick={() => navigate("/hoje")}>
                 <CircularProgressbar
                     value={percentage}
@@ -26,7 +28,9 @@ export default function Footer() {
                     })}
                 />
             </button>
-            <p onClick={() => navigate("/historico")}>Histórico</p>
+            <p data-identifier="historic-page-action" onClick={() => navigate("/historico")}>
+                Histórico
+            </p>
         </Bar>
     )
 }

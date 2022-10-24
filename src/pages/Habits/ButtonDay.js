@@ -1,29 +1,34 @@
 import styled from "styled-components"
 import { useState } from "react"
 
-export default function ButtonDay({isAble, el, days, setDays}) {
+export default function ButtonDay({ isAble, el, days, setDays }) {
     const [clicada, setClicada] = useState(false)
 
-    function addDay(day){
+    function addDay(day) {
         setDays([...days, day])
-        if([...days, day].includes(day)){
+        if ([...days, day].includes(day)) {
             setClicada(true)
         }
-        else{
+        else {
             setClicada(false)
         }
     }
-    function chooseDay(el){
-        if(el === 0){return "D"} 
-        else if(el === 1){return "S"}
-        else if(el === 2){return "T"}
-        else if(el === 3){return "Q"}
-        else if(el === 4){return "Q"}
-        else if(el === 5){return "S"}
-        else if(el === 6){return "S"}  
-    } 
+    function chooseDay(el) {
+        if (el === 0) { return "D" }
+        else if (el === 1) { return "S" }
+        else if (el === 2) { return "T" }
+        else if (el === 3) { return "Q" }
+        else if (el === 4) { return "Q" }
+        else if (el === 5) { return "S" }
+        else if (el === 6) { return "S" }
+    }
     return (
-        <Botao clicada={clicada} disabled={isAble ? "" : "disabled"} onClick={() => addDay(el)}>{chooseDay(el)}</Botao>
+        <Botao clicada={clicada}
+            data-identifier="week-day-btn"
+            disabled={isAble ? "" : "disabled"}
+            onClick={() => addDay(el)}>
+            {chooseDay(el)}
+        </Botao>
     )
 }
 

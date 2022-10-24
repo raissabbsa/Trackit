@@ -33,10 +33,12 @@ export default function Habit() {
                 <Header />
                 <AddHabit>
                     <h2>Meus Hábitos</h2>
-                    <button onClick={() => setHabit(true)}>+</button>
+                    <button data-identifier="create-habit-btn" onClick={() => setHabit(true)}>+</button>
                 </AddHabit>
                 <AddNewHabit />
-                <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
+                <h2 data-identifier="no-habit-message">
+                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                </h2>
                 <Footer />
             </Container>
         )
@@ -47,7 +49,7 @@ export default function Habit() {
                 <Header />
                 <AddHabit>
                     <h2>Meus Hábitos</h2>
-                    <button onClick={() => setHabit(true)}>+</button>
+                    <button data-identifier="create-habit-btn" onClick={() => setHabit(true)}>+</button>
                 </AddHabit>
                 <AddNewHabit />
                 <List>

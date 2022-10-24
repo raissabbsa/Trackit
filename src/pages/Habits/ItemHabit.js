@@ -4,13 +4,13 @@ import styled from "styled-components"
 import { TrackContext } from "../../contexts/TrackContext"
 import ItemHAbitButton from "./ItemHabitButton"
 
-export default function ItemHabit({ e, searchInfo}) {
+export default function ItemHabit({ e, searchInfo }) {
     const { token } = useContext(TrackContext)
     const arrayDias = [0, 1, 2, 3, 4, 5, 6]
 
-    function deleteHabit(){
-        if (window.confirm('Você tem certeza que quer deletar esta tarefa?')){
-            const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${e.id}`
+    function deleteHabit() {
+        if (window.confirm('Você tem certeza que quer deletar esta tarefa?')) {
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${e.id}`
             const config = {
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -20,18 +20,21 @@ export default function ItemHabit({ e, searchInfo}) {
             promise.then((res) => {
                 searchInfo()
             })
-            promise.catch((err) => console.log(err.response.data)) 
+            promise.catch((err) => console.log(err.response.data))
         }
     }
 
     return (
         <Container>
-            <div>{e.name}</div>
+            <div data-identifier="habit-name">{e.name}</div>
             <Dias>
                 {arrayDias.map((el) => <ItemHAbitButton key={el} el={el} days={e.days} />)}
             </Dias>
             <Icone>
-                <ion-icon onClick={deleteHabit} name="trash-outline"></ion-icon>
+                <ion-icon data-identifier="delete-habit-btn"
+                    onClick={deleteHabit}
+                    name="trash-outline">
+                </ion-icon>
             </Icone>
         </Container>
     )

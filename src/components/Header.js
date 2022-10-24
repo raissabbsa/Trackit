@@ -7,7 +7,7 @@ export default function Header(){
     return(
         <Top>
             <h1>Trackit</h1>
-            <img src={user.image} alt={user}></img>
+            <img data-identifier="avatar" src={user.image} alt={user}></img>
         </Top>
     )
 }

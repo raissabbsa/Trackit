@@ -40,6 +40,7 @@ export default function Login() {
             <img src={logo} alt="logo" />
             <form onSubmit={login}>
                 <input
+                d   ata-identifier="input-email"
                     placeholder="email"
                     type="email"
                     value={form.email}
@@ -48,6 +49,7 @@ export default function Login() {
                     disabled={loading ? "disabled" : ""}
                 />
                 <input
+                    data-identifier="input-password"
                     placeholder="senha"
                     type="password" 
                     value={form.password}
@@ -55,11 +57,13 @@ export default function Login() {
                     onChange={fillForm}
                     disabled={loading ? "disabled" : ""}
                     />
-                <button type="submit" disabled={loading ? "disabled" : ""}>
+                <button data-identifier="login-btn"
+                    type="submit" disabled={loading ? "disabled" : ""}>
                     {loading? (<ThreeDots color="#DDDDDD" height={13} width={300} radius="9" ariaLabel="loading"/>) : ("Entrar")}
                 </button>
             </form>
-            <p onClick={() => navigate("/cadastro")}>Não tem uma conta? Cadastre-se!</p>
+            <p data-identifier="sign-up-action" onClick={() => navigate("/cadastro")}>Não tem uma conta? Cadastre-se!</p>
+            <div></div>
         </Container>
     )
 }
@@ -70,7 +74,6 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
-    height: 650px;
     img{
         margin-top: 68px;
         margin-bottom: 30px;
@@ -114,6 +117,10 @@ const Container = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    &>div{
+        background-color: #FFFFFF;
+        height: 200px;
     }
     
 `

@@ -4,18 +4,18 @@ import logo from "../../assets/images/logo.png"
 import { useState } from "react"
 import axios from "axios"
 
-export default function Registracion(){
+export default function Registracion() {
     const [isAble, setAble] = useState(true)
     const navigate = useNavigate()
-    const [form,setForm] = useState({email:"", name:"", image:"", password:""})
+    const [form, setForm] = useState({ email: "", name: "", image: "", password: "" })
 
-    function fillForm(e){
-        setForm({...form, [e.target.name]: e.target.value})
+    function fillForm(e) {
+        setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    function submitForm(e){
+    function submitForm(e) {
         e.preventDefault();
-        const URL= "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
         const promisse = axios.post(URL, form)
         promisse.then((res) => {
             setAble(false)
@@ -27,11 +27,12 @@ export default function Registracion(){
         })
     }
 
-    return(
+    return (
         <Container>
             <img src={logo} alt="logo" />
             <form onSubmit={submitForm}>
                 <input
+                    data-identifier="input-email"
                     placeholder="email"
                     name="email"
                     type="email"
@@ -40,6 +41,7 @@ export default function Registracion(){
                     disabled={isAble ? "" : "disabled"}
                     required />
                 <input
+                    data-identifier="input-password"
                     placeholder="senha"
                     type="password"
                     name="password"
@@ -48,6 +50,7 @@ export default function Registracion(){
                     disabled={isAble ? "" : "disabled"}
                     required />
                 <input
+                    data-identifier="input-name"
                     placeholder="nome"
                     type="name"
                     name="name"
@@ -56,8 +59,9 @@ export default function Registracion(){
                     disabled={isAble ? "" : "disabled"}
                     required />
                 <input
+                    data-identifier="input-photo"
                     placeholder="foto"
-                    type="url" 
+                    type="url"
                     name="image"
                     value={form.image}
                     onChange={fillForm}
@@ -65,7 +69,9 @@ export default function Registracion(){
                     required />
                 <button disabled={isAble ? "" : "disabled"} type="submit">Cadastrar</button>
             </form>
-            <p onClick={() => navigate("/")}>Já tem uma conta? Faça Login!</p>
+            <p data-identifier="back-to-login-action" onClick={() => navigate("/")}>
+                Já tem uma conta? Faça Login!
+            </p>
         </Container>
     )
 }
